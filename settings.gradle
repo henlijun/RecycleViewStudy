@@ -1,0 +1,3 @@
+include ':diffmodule'
+include ':app'
+rootProject.name = "RecycleApplication"
