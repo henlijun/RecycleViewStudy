@@ -15,7 +15,9 @@ import java.util.List;
  * @CreateDate: 2021/7/9 17:10
  * @UpdateUser: 更新者
  * @UpdateDate: 2021/7/9 17:10
- * @UpdateRemark: 更新说明
+ * @UpdateRemark: DiffUtil 简单使用
+ * Student | StudentAdapter |
+ *
  * @Version: 1.0
  */
 public class RecycleDiffUtil extends DiffUtil.Callback {
@@ -41,14 +43,15 @@ public class RecycleDiffUtil extends DiffUtil.Callback {
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
         if(oldData == null || newData == null)
             return false;
-        if(oldItemPosition < oldData.size() & newItemPosition < newData.size() ){
-            return oldData.get(oldItemPosition).name.equals(newData.get(oldItemPosition).name);
+       /* if(oldItemPosition < oldData.size() && newItemPosition < newData.size() ){
+            return oldData.get(oldItemPosition).name.equals(newData.get(newItemPosition).name);
         }
-        return false;
+        return false;*/
+        return oldData.get(oldItemPosition).name.equals(newData.get(newItemPosition).name);
     }
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        return oldData.get(oldItemPosition).equals(newData.get(oldItemPosition));
+        return oldData.get(oldItemPosition).equals(newData.get(newItemPosition));
     }
 }

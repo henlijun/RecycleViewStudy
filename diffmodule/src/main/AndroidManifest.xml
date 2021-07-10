@@ -11,19 +11,14 @@
         android:theme="@style/Theme.RecycleApplication">
         <activity android:name=".ui.RecycleActivity"></activity>
         <activity android:name=".ui.MainActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-        <activity android:name=".ui.RecycleDiffActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.RecycleDiffActivity"></activity>
+        <activity android:name=".ui.RecycleAsyncDiffActivity"/>
     </application>
 
 </manifest>

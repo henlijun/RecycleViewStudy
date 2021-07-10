@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Student | StudentAdapter | RecycleDiffUtil
+ */
 public class RecycleDiffActivity extends AppCompatActivity {
 
     @Override
@@ -42,11 +45,11 @@ public class RecycleDiffActivity extends AppCompatActivity {
                 diffUtil.oldData = new ArrayList<>();
             }
             diffUtil.oldData.clear();
-            diffUtil.oldData.addAll(adapter.data);
+            diffUtil.oldData.addAll(diffUtil.newData);
             diffUtil.newData = getData();
             DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffUtil);
             diffResult.dispatchUpdatesTo(adapter);
-            adapter.notifyDataSetChanged();
+            adapter.data= diffUtil.newData;
 
         });
     }
@@ -54,7 +57,7 @@ public class RecycleDiffActivity extends AppCompatActivity {
     Random random = new Random();
     List<Student> students = new ArrayList<>();
     private List<Student> getData(){
-        int a = random.nextInt(100);
+        int a = random.nextInt(16);
         students.clear();
         while (a > 0){
             a--;
