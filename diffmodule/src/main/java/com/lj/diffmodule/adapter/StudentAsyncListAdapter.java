@@ -6,14 +6,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lj.diffmodule.R;
 import com.lj.diffmodule.bean.Student;
-
-import java.util.List;
 
 /**
  * @ProjectName: RecycleApplication
@@ -27,20 +25,12 @@ import java.util.List;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class StudentAsyncAdapter extends RecyclerView.Adapter<StudentAsyncAdapter.ReViewHolder> {
+public class StudentAsyncListAdapter extends ListAdapter<Student, StudentAsyncListAdapter.ReViewHolder> {
 
-    //使用differ 代替原list 管理数据
-    public AsyncListDiffer<Student> diffUtil = new AsyncListDiffer<Student>(this, new DiffUtil.ItemCallback<Student>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
-            return oldItem.hashCode() == newItem.hashCode();
-        }
+    protected StudentAsyncListAdapter(@NonNull DiffUtil.ItemCallback<Student> diffCallback) {
+        super(diffCallback);
+    }
 
-        @Override
-        public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
-            return oldItem.equals(newItem);
-        }
-    });
     @NonNull
     @Override
     public ReViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,19 +40,14 @@ public class StudentAsyncAdapter extends RecyclerView.Adapter<StudentAsyncAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ReViewHolder holder, int position) {
-        Student student = diffUtil.getCurrentList().get(position);
+        Student student = getItem(position);
         holder.textViews[0].setText(student.name);
         holder.textViews[1].setText(String.valueOf(student.age));
         holder.textViews[2].setText(String.valueOf(student.workTime));
         holder.textViews[3].setText(student.company);
     }
 
-    @Override
-    public int getItemCount() {
-        return  diffUtil.getCurrentList().size();
-    }
-
-    static class ReViewHolder extends RecyclerView.ViewHolder{
+    class ReViewHolder extends RecyclerView.ViewHolder{
         TextView[] textViews = new TextView[4];
         public ReViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,4 +57,19 @@ public class StudentAsyncAdapter extends RecyclerView.Adapter<StudentAsyncAdapte
             textViews[3] = itemView.findViewById(R.id.textView4);
         }
     }
+
+    private class StudentDiffItemCallBack extends DiffUtil.ItemCallback<Student>{
+
+        @Override
+        public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
+            return oldItem.hashCode() == newItem.hashCode();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
+            return oldItem.equals(newItem);
+        }
+    }
+
+
 }
