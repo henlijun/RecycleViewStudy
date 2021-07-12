@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button4:
                 intent = new Intent(this, RecycleAsyncDiffActivity.class);
                 break;
+            case R.id.button5:
+                intent = new Intent(this, RecycleDiffListActivity.class);
+                break;
         }
 
         if(intent != null)

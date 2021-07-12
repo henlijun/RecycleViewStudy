@@ -6,12 +6,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lj.diffmodule.R;
 import com.lj.diffmodule.bean.Student;
+
+import java.util.List;
 
 /**
  * @ProjectName: RecycleApplication
@@ -27,7 +30,7 @@ import com.lj.diffmodule.bean.Student;
  */
 public class StudentAsyncListAdapter extends ListAdapter<Student, StudentAsyncListAdapter.ReViewHolder> {
 
-    protected StudentAsyncListAdapter(@NonNull DiffUtil.ItemCallback<Student> diffCallback) {
+    public StudentAsyncListAdapter(@NonNull DiffUtil.ItemCallback<Student> diffCallback) {
         super(diffCallback);
     }
 
@@ -58,18 +61,9 @@ public class StudentAsyncListAdapter extends ListAdapter<Student, StudentAsyncLi
         }
     }
 
-    private class StudentDiffItemCallBack extends DiffUtil.ItemCallback<Student>{
-
-        @Override
-        public boolean areItemsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
-            return oldItem.hashCode() == newItem.hashCode();
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull Student oldItem, @NonNull Student newItem) {
-            return oldItem.equals(newItem);
-        }
+    @Override
+    public void submitList(@Nullable List<Student> list) {
+        super.submitList(list);
     }
-
 
 }

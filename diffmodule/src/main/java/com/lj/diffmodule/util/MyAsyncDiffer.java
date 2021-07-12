@@ -21,7 +21,7 @@ import com.lj.diffmodule.bean.Student;
  */
 public class MyAsyncDiffer extends AsyncListDiffer<Student>{
 
-    //todo
+    //todo 源码复写
     public MyAsyncDiffer(@NonNull RecyclerView.Adapter adapter, @NonNull DiffUtil.ItemCallback<Student> diffCallback) {
         super(adapter, diffCallback);
     }

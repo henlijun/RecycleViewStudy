@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".ui.RecycleDiffActivity"></activity>
         <activity android:name=".ui.RecycleAsyncDiffActivity"/>
+        <activity android:name=".ui.RecycleDiffListActivity"/>
     </application>
 
 </manifest>
