@@ -1,3 +1,4 @@
+include ':module_basequick'
 include ':diffmodule'
 include ':app'
 rootProject.name = "RecycleApplication"
